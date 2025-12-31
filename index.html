@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Darts Overlay</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div id="app" class="app">
+
+    <!-- ================= TOP BAR ================= -->
+    <header class="topbar ui">
+      <div class="left">
+        <div class="brand">DARTS</div>
+
+        <div class="ctrl">
+          <label>Game</label>
+          <select id="gameMode">
+            <option value="x01">X01</option>
+            <option value="cricket">Cricket</option>
+          </select>
+        </div>
+
+        <div class="ctrl">
+          <label>Theme</label>
+          <select id="themeSelect">
+            <option value="classic">Classic</option>
+            <option value="neon" selected>Neon</option>
+            <option value="mono">Mono</option>
+            <option value="slate">Slate</option>
+            <option value="retro">Retro</option>
+          </select>
+        </div>
+
+        <div class="ctrl" id="x01Controls">
+          <label>Start</label>
+          <select id="x01Start">
+            <option value="301">301</option>
+            <option value="501" selected>501</option>
+            <option value="701">701</option>
+          </select>
+        </div>
+
+        <div class="ctrl toggles" id="x01Toggles">
+          <label class="chk">
+            <input type="checkbox" id="doubleIn" />
+            <span>Double-In</span>
+          </label>
+          <label class="chk">
+            <input type="checkbox" id="doubleOut" checked />
+            <span>Double-Out</span>
+          </label>
+        </div>
+
+        <div class="ctrl cricketNote" id="cricketControls">
+          <label>Targets</label>
+          <div class="pill">20 19 18 17 16 15 Bull</div>
+        </div>
+      </div>
+
+      <div class="right">
+        <button id="btnNewLeg" class="btn">New Leg</button>
+        <button id="btnUndoDart" class="btn">Undo Dart</button>
+        <button id="btnUndoTurn" class="btn">Undo Turn</button>
+        <button id="btnHide" class="btn ghost" title="Shortcut: H">Hide UI</button>
+      </div>
+    </header>
+
+    <!-- ================= MAIN ================= -->
+    <main class="main">
+
+      <!-- ============== BOARD AREA ============== -->
+      <section class="board-wrap">
+        <div class="board-card">
+          <div class="board-title">
+            <span id="turnLabel">Turn</span>
+            <span class="muted" id="turnThrows">—</span>
+          </div>
+
+          <div class="board-area" id="boardArea">
+
+            <!-- 180 / WIN FX (centered to board area) -->
+            <div id="fx180" class="fx hidden" aria-hidden="true">
+              <div class="fx-inner">
+                <div class="fx-title">180</div>
+                <div class="fx-sub">MAXIMUM</div>
+              </div>
+            </div>
+
+            <!-- SVG board mount -->
+            <div id="boardMount"></div>
+
+            <!-- Turn panel -->
+            <div class="turn-panel ui">
+              <div class="turn-row">
+                <div class="turn-darts" id="dartChips"></div>
+
+                <div class="turn-total">
+                  <div class="muted">Turn total</div>
+                  <div id="turnTotal" class="num">0</div>
+                </div>
+              </div>
+
+              <!-- Checkout helper -->
+              <div id="checkoutHint" class="checkout muted"></div>
+
+              <div class="turn-actions">
+                <button id="btnEndTurn" class="btn primary">End Turn</button>
+                <button id="btnClearTurn" class="btn ghost">Clear</button>
+              </div>
+
+              <div class="hint muted">
+                Click the board to add throws (max 3).  
+                Press <b>H</b> to hide UI.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============== SIDEBAR ============== -->
+      <aside class="side">
+
+        <div class="panel ui">
+          <div class="panel-head">
+            <div class="panel-title">Players</div>
+            <button id="btnAddPlayer" class="btn small">+ Add</button>
+          </div>
+
+          <div id="playersList" class="players"></div>
+
+          <div class="divider"></div>
+
+          <div class="panel-title">Scoreboard</div>
+          <div id="scoreboard" class="scoreboard"></div>
+        </div>
+
+        <div class="panel mini ui">
+          <div class="panel-title">OBS tips</div>
+          <div class="muted smalltext">
+            Use URL params:
+            <div class="code">
+              ?minimal=1&amp;transparent=1&amp;scale=1.2
+            </div>
+            <div>Press <b>H</b> to toggle UI.</div>
+          </div>
+        </div>
+
+      </aside>
+    </main>
+  </div>
+
+  <!-- ================= SCRIPT ================= -->
+  <script src="script.js"></script>
+</body>
+</html>
